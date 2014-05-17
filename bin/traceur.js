@@ -20018,11 +20018,9 @@ System.register("traceur@0.0.42/src/codegeneration/InstantiateModuleTransformer"
         this.exportVisitor_.visitAny(tree);
         return this.transformAny(tree.declaration);
       }
-      if (tree.declaration.specifierSet.type != EXPORT_STAR) {
-        tree.declaration = this.transformAny(tree.declaration);
-        tree.annotations = this.transformList(tree.annotations);
-      }
       this.exportVisitor_.visitAny(tree);
+      tree.declaration = this.transformAny(tree.declaration);
+      tree.annotations = this.transformList(tree.annotations);
       return new EmptyStatement(null);
     },
     transformNamedExport: function(tree) {

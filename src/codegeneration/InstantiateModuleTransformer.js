@@ -294,11 +294,9 @@ export class InstantiateModuleTransformer extends ModuleTransformer {
     }
 
     // All other declarations are visited then removed.
-    if (tree.declaration.specifierSet.type != EXPORT_STAR) {
-      tree.declaration = this.transformAny(tree.declaration);
-      tree.annotations = this.transformList(tree.annotations);
-    }
     this.exportVisitor_.visitAny(tree);
+    tree.declaration = this.transformAny(tree.declaration);
+    tree.annotations = this.transformList(tree.annotations);
 
     return new EmptyStatement(null);
   }
